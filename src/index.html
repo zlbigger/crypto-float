@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Float</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel">
+        <header class="titlebar">
+          <div class="traffic no-drag">
+            <button id="closeBtn" class="dot close" aria-label="关闭"></button>
+            <button id="minBtn" class="dot min" aria-label="最小化"></button>
+          </div>
+          <div class="brand">
+            <span class="pulse"></span>
+            <span>Wealth Signal</span>
+          </div>
+          <div class="title-actions no-drag">
+            <button id="refreshBtn" class="icon" title="刷新" aria-label="刷新">↻</button>
+            <button id="settingsBtn" class="icon" title="设置" aria-label="设置">⚙</button>
+          </div>
+        </header>
+
+        <section id="compactBar" class="compact-bar no-drag" aria-label="简约行情">
+          <div>
+            <strong id="compactSymbol">BTC</strong>
+            <span id="compactName">Bitcoin</span>
+          </div>
+          <div class="compact-price">
+            <b id="compactPrice">-</b>
+            <small id="compactChange">...</small>
+          </div>
+          <button id="expandBtn" class="compact-expand" title="回到完整模式" aria-label="回到完整模式">↗</button>
+        </section>
+
+        <section class="ritual no-drag">
+          <div>
+            <p class="eyebrow">实时财富仪表</p>
+            <h1>Market Oracle</h1>
+          </div>
+          <div class="seal" aria-hidden="true">₿</div>
+        </section>
+
+        <div id="status" class="status no-drag">正在连接行情...</div>
+
+        <section id="priceList" class="prices no-drag"></section>
+
+        <section id="settingsOverlay" class="settings-overlay no-drag" aria-hidden="true">
+          <div class="settings-sheet" role="dialog" aria-modal="true" aria-label="设置">
+            <header class="settings-header">
+              <div>
+                <strong>设置</strong>
+                <span>Crypto Float</span>
+              </div>
+              <button id="closeSettingsBtn" class="icon" title="关闭设置" aria-label="关闭设置">×</button>
+            </header>
+
+            <nav class="tabs" aria-label="设置分类">
+              <button class="tab active" data-tab="main">行情</button>
+              <button class="tab" data-tab="alerts">提醒</button>
+              <button class="tab" data-tab="sound">声音</button>
+              <button class="tab" data-tab="mascot">角色</button>
+            </nav>
+
+            <section class="controls">
+              <section class="tab-panel active" data-panel="main">
+                <div class="block">
+                  <label for="modeSelect">显示模式</label>
+                  <select id="modeSelect">
+                    <option value="full">完整面板</option>
+                    <option value="compact">简约浮动条</option>
+                  </select>
+                  <div class="muted">简约模式会自动轮播已添加代币。</div>
+                </div>
+
+                <div class="block">
+                  <label for="coinSearch">添加代币</label>
+                  <div class="row">
+                    <input id="coinSearch" type="search" placeholder="搜索 BTC / ETH / dogecoin" />
+                    <button id="searchBtn">搜索</button>
+                  </div>
+                  <div id="searchResults" class="results"></div>
+                </div>
+
+                <div class="block board-sync">
+                  <label>板子同步</label>
+                  <div class="row">
+                    <div id="boardSyncStatus" class="sync-status">正在检测 CIRCUITPY...</div>
+                    <button id="syncBoardBtn">同步</button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="tab-panel" data-panel="alerts">
+                <div class="block">
+                  <label for="alertToken">价格提醒</label>
+                  <div class="grid alert-grid">
+                    <select id="alertToken"></select>
+                    <select id="alertDirection">
+                      <option value="above">高于</option>
+                      <option value="below">低于</option>
+                    </select>
+                    <input id="alertValue" type="number" min="0" step="0.01" placeholder="USD" />
+                    <button id="addAlertBtn">添加</button>
+                  </div>
+                  <div id="alerts" class="alerts"></div>
+                </div>
+              </section>
+
+              <section class="tab-panel" data-panel="sound">
+                <div class="block">
+                  <label>提醒声音</label>
+                  <div class="grid sound-grid">
+                    <select id="soundPreset">
+                      <option value="bell">清亮铃声</option>
+                      <option value="pulse">电子脉冲</option>
+                      <option value="chime">柔和叮咚</option>
+                      <option value="urgent">请注意警示</option>
+                      <option value="soft">轻柔提示</option>
+                    </select>
+                    <input id="soundDuration" type="number" min="1" max="60" step="1" />
+                    <button id="testSoundBtn">试听</button>
+                    <button id="stopSoundBtn">停止</button>
+                  </div>
+                  <div class="row sound-row">
+                    <button id="customSoundBtn">自定义声音</button>
+                    <button id="presetSoundBtn">使用内置声音</button>
+                  </div>
+                  <div id="soundInfo" class="muted"></div>
+                </div>
+              </section>
+
+              <section class="tab-panel" data-panel="mascot">
+                <div class="block">
+                  <label for="mascotSelect">提醒角色</label>
+                  <select id="mascotSelect">
+                    <option value="pixel-cat">像素猫</option>
+                  </select>
+                  <div class="mascot-preview">
+                    <div id="mascotPreview" class="cat-sprite cat-sprite-preview" role="img" aria-label="像素猫"></div>
+                  </div>
+                </div>
+              </section>
+            </section>
+          </div>
+        </section>
+      </section>
+
+      <div id="mascotRunner" class="mascot-runner" aria-hidden="true">
+        <div id="runnerMascot" class="cat-sprite cat-sprite-runner" role="img" aria-label="像素猫"></div>
+      </div>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

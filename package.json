@@ -1,0 +1,24 @@
+{
+  "name": "crypto-float",
+  "version": "0.1.0",
+  "description": "A draggable macOS floating crypto price watcher with alerts.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/renderer.js",
+    "package:mac": "bash scripts/package-mac.sh"
+  },
+  "keywords": [
+    "electron",
+    "crypto",
+    "macos",
+    "floating-window"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron/packager": "^20.0.1",
+    "electron": "^42.3.3"
+  }
+}
