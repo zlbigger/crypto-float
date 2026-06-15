@@ -23,3 +23,15 @@
 下载 `Crypto-Float-mac-arm64.zip`，解压后打开 `Crypto Float.app`。
 
 当前构建未签名。如果 macOS 第一次阻止打开，请右键点击 App，选择 **打开**。
+
+如果提示“`Crypto Float` 已损坏，无法打开”，这是 macOS Gatekeeper 对未公证 App 的拦截。可以在终端执行：
+
+```bash
+xattr -dr com.apple.quarantine "/Applications/Crypto Float.app"
+```
+
+如果 App 在下载目录，请改用：
+
+```bash
+xattr -dr com.apple.quarantine "$HOME/Downloads/Crypto Float.app"
+```
