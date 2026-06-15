@@ -1,76 +1,101 @@
 # Crypto Float
 
-Crypto Float is a lightweight macOS floating crypto price watcher. It keeps selected token prices on top of your desktop, supports price alerts, custom sounds, cute animated alert characters, and a compact ticker mode for day-to-day monitoring.
+Crypto Float 是一个 macOS 桌面悬浮行情工具，用来实时查看 BTC、ETH、DOGE 等加密货币价格。它可以一直置顶显示在屏幕上，支持添加自选代币、设置价格提醒、试听提醒声音、选择 Q 版提醒角色，也可以切换成极简浮动价格条。
 
-Crypto Float 是一个 macOS 悬浮加密货币行情工具。它可以置顶显示 BTC 等代币价格，支持价格提醒、内置/自定义提醒声音、Q 版提醒角色，以及简约浮动行情条。
+如果你经常盯盘，但又不想一直打开交易所网页或行情软件，Crypto Float 就是一个轻量的小窗口：放在桌面角落，看一眼就知道关注的代币有没有接近目标价。
 
-## Features
+## 适合谁
 
-- Floating always-on-top macOS window.
-- BTC is enabled by default on first launch.
-- Search and add more tokens.
-- Live price refresh from multiple public market APIs.
-- Price alerts for above/below USD targets.
-- Built-in alert sounds with preview.
-- Custom local audio file support.
-- Alert sound duration, defaulting to 10 seconds.
-- Manual stop button for active alert sounds.
-- Cute alert characters: cat, dog, chibi girl, chibi boy.
-- Compact mode that automatically rotates through added token prices.
-- Click, double-click, or right-click the compact ticker to return to full mode.
-- Local settings stored in the app user data directory.
+- 想在 Mac 桌面上常驻查看 BTC/ETH 等代币价格的人
+- 想设置价格到达提醒，但不想打开复杂交易软件的人
+- 喜欢轻量、可拖动、置顶浮窗工具的人
+- 想要一个有一点可爱反馈的行情提醒工具的人
 
-## Download
+## 功能亮点
 
-For normal users, download the macOS app from the GitHub Releases page:
+- **默认显示 BTC**：首次打开软件就会自动添加 Bitcoin / BTC。
+- **自选代币**：可以搜索并添加更多代币。
+- **实时行情**：自动从多个公开行情源获取价格。
+- **价格提醒**：支持设置“高于某个价格”或“低于某个价格”时提醒。
+- **多种提醒声音**：内置清亮铃声、电子脉冲、柔和叮咚、请注意警示、轻柔提示。
+- **声音试听**：设置前可以先试听。
+- **声音持续时间**：默认提醒 10 秒，也可以自己调整。
+- **手动停止声音**：提醒响起后可以随时停止。
+- **自定义声音**：可以选择本地音频文件作为提醒声音。
+- **提醒角色**：可选可爱猫、可爱狗、Q 版美少女、Q 版美少男。
+- **请注意动画**：触发提醒时，角色会带着“请注意”的表情动作出现。
+- **简约模式**：切换成小浮动条，只显示代币价格。
+- **自动轮播**：简约模式会自动轮播用户已添加的代币价格。
+- **快速返回完整模式**：点击、双击或右键简约浮动条都可以回到完整面板。
+- **本地保存设置**：代币列表、提醒、声音、角色等配置保存在本机。
 
-- `Crypto-Float-mac-arm64.zip`
+## 下载安装
 
-Unzip it, then open `Crypto Float.app`.
+前往 GitHub Releases 下载 macOS 安装包：
 
-Because this is currently an unsigned local build, macOS may block it the first time. If that happens, right-click `Crypto Float.app` and choose **Open**.
+[下载 Crypto-Float-mac-arm64.zip](https://github.com/zlbigger/crypto-float/releases/download/v0.1.0/Crypto-Float-mac-arm64.zip)
 
-## Build From Source
+安装方式：
 
-Requirements:
+1. 下载 `Crypto-Float-mac-arm64.zip`
+2. 解压后得到 `Crypto Float.app`
+3. 双击打开
+
+当前版本是未签名的本地构建版。如果 macOS 第一次阻止打开，请右键点击 `Crypto Float.app`，选择 **打开**。
+
+## 使用说明
+
+打开后默认会显示 BTC 价格。你可以：
+
+- 在“行情”页搜索并添加更多代币
+- 在“提醒”页设置目标价格
+- 在“声音”页选择提醒声音、试听、设置持续时间
+- 在“角色”页选择提醒时出现的 Q 版角色
+- 在“行情”页切换到简约浮动条模式
+
+简约模式下，软件会自动轮播你已添加的代币价格。点击右侧 `↗`、双击浮动条，或右键浮动条，都可以回到完整模式。
+
+## 从源码运行
+
+环境要求：
 
 - macOS
 - Node.js 20+
 - npm
 
-Install dependencies:
+安装依赖：
 
 ```bash
 npm install
 ```
 
-Run in development:
+开发运行：
 
 ```bash
 npm start
 ```
 
-Run syntax checks:
+检查代码：
 
 ```bash
 npm run check
 ```
 
-Build the macOS `.app`:
+生成 macOS `.app`：
 
 ```bash
 npm run package:mac
 ```
 
-The app will be generated at:
+生成结果：
 
 ```text
 dist/Crypto Float-darwin-arm64/Crypto Float.app
 ```
 
-## Market Data
+## 行情数据来源
 
-Crypto Float tries multiple public data sources and uses the first available live result:
+Crypto Float 会依次尝试多个公开行情源，使用第一个可用的实时数据结果：
 
 - CryptoCompare
 - CoinGecko
@@ -78,24 +103,25 @@ Crypto Float tries multiple public data sources and uses the first available liv
 - Huobi
 - Coinbase
 
-Public APIs may be rate-limited or temporarily unavailable. If your network requires a proxy, start the app with proxy environment variables:
+公开 API 可能有频率限制，也可能因为网络环境暂时不可用。如果你需要代理，可以这样启动：
 
 ```bash
 HTTPS_PROXY=http://127.0.0.1:7890 npm start
 ```
 
-## Privacy
+## 隐私说明
 
-Crypto Float stores settings locally through Electron's user data directory. It does not require an account and does not send your alert settings to a private backend.
+Crypto Float 不需要账号登录。代币列表、提醒价格、声音和角色选择等设置都保存在本机 Electron 用户数据目录中，不会上传到私人服务器。
 
-## Roadmap Ideas
+## 未来计划
 
-- Signed and notarized macOS builds.
-- Universal Intel + Apple Silicon build.
-- Custom app icon.
-- More alert characters and sound packs.
-- Optional menu bar mode.
+- 增加正式软件图标
+- 提供签名和公证后的 macOS 安装包
+- 支持 Intel + Apple Silicon 通用版本
+- 增加更多提醒角色和声音包
+- 增加菜单栏模式
+- 增加更多行情数据源配置
 
-## License
+## 开源协议
 
 MIT

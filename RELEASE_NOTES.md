@@ -1,21 +1,25 @@
 # Crypto Float v0.1.0
 
-Initial open-source release.
+第一个开源版本。
 
-## Highlights
+## 本版亮点
 
-- macOS floating crypto price window.
-- BTC enabled by default.
-- Add more tokens via search.
-- Above/below price alerts.
-- Built-in alert sounds with preview and duration control.
-- Custom local audio file alerts.
-- Manual stop for active alert sounds.
-- Cute animated alert characters.
-- Compact ticker mode with automatic token rotation.
+- macOS 桌面悬浮加密货币行情窗口。
+- 首次打开默认添加 BTC。
+- 支持搜索并添加更多代币。
+- 支持高于/低于目标价格提醒。
+- 内置多种提醒声音，并支持试听。
+- 可设置提醒声音持续时间，默认 10 秒。
+- 支持自定义本地音频文件作为提醒声音。
+- 支持手动停止正在播放的提醒声音。
+- 支持可爱猫、可爱狗、Q 版美少女、Q 版美少男提醒角色。
+- 触发提醒时显示“请注意”角色动画。
+- 支持简约浮动条模式。
+- 简约模式会自动轮播已添加代币价格。
+- 点击、双击或右键简约浮动条，可回到完整模式。
 
-## Install
+## 安装方式
 
-Download `Crypto-Float-mac-arm64.zip`, unzip it, and open `Crypto Float.app`.
+下载 `Crypto-Float-mac-arm64.zip`，解压后打开 `Crypto Float.app`。
 
-This build is unsigned. If macOS blocks it, right-click the app and choose **Open**.
+当前构建未签名。如果 macOS 第一次阻止打开，请右键点击 App，选择 **打开**。
